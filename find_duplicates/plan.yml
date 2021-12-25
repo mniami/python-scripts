@@ -1,0 +1,9 @@
+find_duplications App:
+  - find duplicated images
+  - report only:
+      - create an html file:
+          - two columns
+          - left column original
+          - right column duplicate
+  - move to local folder
+  - move to one destination folder
