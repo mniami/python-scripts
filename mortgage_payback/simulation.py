@@ -1,6 +1,7 @@
 from mortgage import MortgagePayment
 from mortgage_model import Params
 from strategies import Strategies
+from i18n.i18n import get_text
 
 
 class Simulation:
@@ -12,7 +13,8 @@ class Simulation:
         print(self.mortgagePayment.params)
         while self.mortgagePayment.state.current_mortgage > 0:
             self.mortgagePayment.pay_off(year)
-            print(f"Year: {year}", self.mortgagePayment.state)
+            year_text = get_text("year")
+            print(f"{year_text}: {year}", self.mortgagePayment.state)
             year += 1
 
         print(self.mortgagePayment.results)

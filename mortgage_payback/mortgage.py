@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from utils import Money, Utils
+from utils import Money
 from mortgage_model import Results, State, Params
 
 
@@ -39,6 +39,9 @@ class MortgagePayment:
 
         self.state.current_mortgage -= capital
         self.state.month_payment = payment / 12
-        self.state.year_payment = payment
+        self.state.payment = payment
+        self.state.interest = interest
+        self.state.capital = capital
+
         self.results.total_paid_capital += capital
         self.results.total_paid_interest += interest

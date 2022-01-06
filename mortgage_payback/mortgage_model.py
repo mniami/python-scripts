@@ -1,7 +1,8 @@
 from typing import NamedTuple
-from dataclasses import dataclass
+from dataclasses import dataclass, fields
 from utils import Money, Utils
 from typing import Protocol
+from i18n.i18n import get_text
 
 
 @dataclass
@@ -10,17 +11,28 @@ class Results:
     total_paid_interest: Money = 0
 
     def __repr__(self):
-        return "\t".join(Utils.get_all_fields_values(self))
+        total_paid_capital_text = get_text("total_paid_capital")
+        total_paid_interest_text = get_text("total_paid_interest")
+
+        return f"{total_paid_capital_text}: {self.total_paid_capital}, {total_paid_interest_text}: {self.total_paid_interest}"
 
 
 @dataclass
 class State:
-    year_payment: Money = 0
+    payment: Money = 0
+    interest: Money = 0
+    capital: Money = 0
     month_payment: Money = 0
     current_mortgage: Money = 0
 
     def __repr__(self):
-        return f"year payment: {round(self.year_payment,2)}, month payment: {round(self.month_payment, 2)}, current mortage: {round(self.current_mortgage, 2)}"
+        result = ""
+        fields_names = {field.name: field.type for field in fields(State)}
+        for name in fields_names.keys():
+            v = round(getattr(self, name), 2)
+            name = get_text(name)
+            result += f"{name}: {v}, "
+        return result
 
 
 class CapitalCalculationStrategy(Protocol):
@@ -35,4 +47,7 @@ class Params(NamedTuple):
     capital_strategy: CapitalCalculationStrategy
 
     def __repr__(self):
-        return f"years: {self.years}, mortgage: {round(self.mortgage, 2)}, rate: {self.rate}"
+        years_text = get_text("years")
+        mortgage_text = get_text("mortgage")
+        rate_text = get_text("rate")
+        return f"{years_text}: {self.years}, {mortgage_text}: {round(self.mortgage, 2)}, {rate_text}: {self.rate}"
