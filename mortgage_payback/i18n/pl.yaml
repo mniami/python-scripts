@@ -5,7 +5,9 @@ capital: Kapitał
 month_payment: Mies. rata
 total_paid_capital: Całkowity kapitał
 total_paid_interest: Całkowite odsetki
+fixed_month_payment: Stała miesieczna rata
 current_mortgage: Pozostało
 mortgage: Kredyt
 rate: Oprocentowanie
 years: Lata
+overpayment: Nadpłata

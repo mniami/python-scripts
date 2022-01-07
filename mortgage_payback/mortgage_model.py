@@ -9,12 +9,18 @@ from i18n.i18n import get_text
 class Results:
     total_paid_capital: Money = 0
     total_paid_interest: Money = 0
+    fixed_month_payment: Money = 0
 
     def __repr__(self):
         total_paid_capital_text = get_text("total_paid_capital")
         total_paid_interest_text = get_text("total_paid_interest")
+        fixed_month_payment_text = get_text("fixed_month_payment")
 
-        return f"{total_paid_capital_text}: {self.total_paid_capital}, {total_paid_interest_text}: {self.total_paid_interest}"
+        return (
+            f"{total_paid_capital_text}: {self.total_paid_capital}, "
+            f"{total_paid_interest_text}: {self.total_paid_interest}, "
+            f"{fixed_month_payment_text}: {self.fixed_month_payment}"
+        )
 
 
 @dataclass
@@ -24,6 +30,7 @@ class State:
     capital: Money = 0
     month_payment: Money = 0
     current_mortgage: Money = 0
+    overpayment: Money = 0
 
     def __repr__(self):
         result = ""

@@ -5,7 +5,9 @@ capital: capital
 month_payment: Month payment
 total_paid_capital: Total capital paid
 total_paid_interest: Total interest paid
+fixed_month_payment: Fix month payment
 current_mortgage: Current mortgage
 mortgage: mortgage
 rate: rate
 years: years
+overpayment: overpayment
